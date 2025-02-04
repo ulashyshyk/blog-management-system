@@ -7,14 +7,20 @@ const path = require('path');
 app.use(express.json());
 app.use(express.static('public'));
 app.get('/', (req, res) => {
-  // res.send(`
-  //   <h1>Ulash Yshyk - 153349220</h1>
-  //   <p><a href="/about">Go to About Page</a></p>
-  // `);
   res.redirect("/about");
 });
+
 app.get('/about', (req, res) => {
   res.sendFile(path.join(__dirname, 'views', 'about.html'));
+});
+
+app.get('/articles',(req,res) => {
+  res.sendFile(path.join(__dirname, 'views', 'articles.html'));
+
+});
+
+app.get('/categories',(req,res) => {
+  res.sendFile(path.join(__dirname, 'views', 'categories.html'));
 });
 
 app.listen(port, () => {

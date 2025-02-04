@@ -1,0 +1,14 @@
+body{
+    font-family: "Poppins", serif;
+
+}
+
+.textContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 80vh;
+    margin: auto;
+    padding: 20px;
+}
