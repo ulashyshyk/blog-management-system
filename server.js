@@ -1,19 +1,23 @@
 const express = require('express');
 const app = express();
-const PORT = 3000;
+
+const port = 8000;
+
 const path = require('path');
 app.use(express.json());
-
+app.use(express.static('public'));
 app.get('/', (req, res) => {
-  res.send(`
-    <h1>Ulash Yshyk - 153349220</h1>
-    <p><a href="/about">Go to About Page</a></p>
-  `);
+  // res.send(`
+  //   <h1>Ulash Yshyk - 153349220</h1>
+  //   <p><a href="/about">Go to About Page</a></p>
+  // `);
+  res.redirect("/about");
 });
 app.get('/about', (req, res) => {
   res.sendFile(path.join(__dirname, 'views', 'about.html'));
 });
 
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+app.listen(port, () => {
+  console.log(`Express http server listening on port ${port}`);
+  console.log(`http://localhost:${port}`)
 });
