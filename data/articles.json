@@ -11,6 +11,7 @@
         "id": 2,
         "title": "Football skills",
         "content": "In this post I will show my favourite football skills",
+        "author":"Ulash Yshyk",
         "published": false,
         "category": "Hobby"
     }
