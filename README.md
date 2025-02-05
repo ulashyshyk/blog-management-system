@@ -32,9 +32,6 @@ Before running the program, ensure you have **Node.js** installed. You can downl
 - [Download Node.js](https://nodejs.org/)
 
 ## How to use
-# 1. Clone the Repository
-If your project is hosted on a version control platform like GitHub, clone the repository to your local machine:
-```bash
 git clone https://github.com/Ulash1907/web322_assignments
 
 cd WEB322_ASSIGNMENTS
