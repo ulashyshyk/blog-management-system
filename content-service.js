@@ -41,3 +41,5 @@ function getCategories(){
         resolve(global.categories)
     })
 }
+
+module.exports = { initialize, getPublishedArticles, getCategories };

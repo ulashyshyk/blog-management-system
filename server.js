@@ -1,11 +1,15 @@
 const express = require('express');
 const app = express();
 
-const port = 8000;
-
 const path = require('path');
 app.use(express.json());
 app.use(express.static('public'));
+
+const port = 8000;
+
+const { initialize, getPublishedArticles, getCategories } = require('./content-service.js');
+
+
 app.get('/', (req, res) => {
   res.redirect("/about");
 });
@@ -15,12 +19,32 @@ app.get('/about', (req, res) => {
 });
 
 app.get('/articles',(req,res) => {
-  res.sendFile(path.join(__dirname, 'views', 'articles.html'));
+  initialize()
+    .then(() => {
+      return getPublishedArticles()
+    })
+    .then((articles) =>{
+      res.json(articles)
+    }).catch((err) => {
+      console.log(err)
+      res.status(500).json({message : err})
+    })
 
+  // res.sendFile(path.join(__dirname, 'views', 'articles.html'));
 });
 
 app.get('/categories',(req,res) => {
-  res.sendFile(path.join(__dirname, 'views', 'categories.html'));
+  initialize()
+    .then(() => {
+      return getCategories()
+    })
+    .then((categories) =>{
+      res.json(categories)
+    }).catch((err) => {
+      console.log(err)
+      res.status(500).json({message : err})
+    })
+    // res.sendFile(path.join(__dirname, 'views', 'categories.html'));
 });
 
 app.listen(port, () => {
