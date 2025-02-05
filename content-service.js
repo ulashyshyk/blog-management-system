@@ -1,3 +1,9 @@
+// Name: Ulash Yshyk
+// Student Number: 153349220
+// Email: uyshyk@myseneca.ca
+// Create Date: 2025/02/04
+// Last Modified Date: 2025/02/05
+
 const fs = require("fs").promises
 
 global.articles = [];
