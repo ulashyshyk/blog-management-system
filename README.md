@@ -31,10 +31,36 @@ Before running the program, ensure you have **Node.js** installed. You can downl
 
 - [Download Node.js](https://nodejs.org/)
 
-## How to use
-git clone https://github.com/Ulash1907/web322_assignments
+## How to Use
 
+### 1. Clone the Repository
+
+Clone the repository to your local machine using the following command:
+
+```bash
+git clone https://github.com/Ulash1907/web322_assignments
+2. Navigate to the Project Directory
+After cloning the repository, change into the project directory:
+
+bash
+Copy
+Edit
 cd WEB322_ASSIGNMENTS
+3. Install Dependencies
+Run the following command to install all the required dependencies:
+
+bash
+Copy
+Edit
 npm install
+4. Start the Server
+Start the server by running:
+
+bash
+Copy
+Edit
 node server.js
-Access the application using this link http://localhost:8000
+5. Access the Application
+Finally, open your browser and visit the following URL to access the application:
+
+http://localhost:8000
