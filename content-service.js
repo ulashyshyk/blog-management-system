@@ -5,6 +5,7 @@
 // Last Modified Date: 2025/02/05
 
 const fs = require("fs").promises
+const path = require("path")
 
 global.articles = [];
 global.categories = [];
@@ -13,10 +14,13 @@ async function initialize(){
     return new Promise(async (resolve,reject) => {
         try {
 
-            const articlesData = await fs.readFile('./data/articles.json','utf8')
+            const articlesPath = path.join(process.cwd(), "data", "articles.json");
+            const categoriesPath = path.join(process.cwd(), "data", "categories.json");
+
+            const articlesData = await fs.readFile(articlesPath,'utf8')
             global.articles = JSON.parse(articlesData)
 
-            const categoriesData = await fs.readFile('./data/categories.json','utf8')
+            const categoriesData = await fs.readFile(categoriesPath,'utf8')
             global.categories = JSON.parse(categoriesData)
 
             resolve()
