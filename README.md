@@ -8,7 +8,7 @@
 - **Professor**: Harry Scanlan
 
 ## Vercel Link
-- https://web322-assignments-1907.vercel.app/about
+- https://web322-assignments-dun.vercel.app/
 
 ## GitHub Repository
 
