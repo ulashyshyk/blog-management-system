@@ -5,14 +5,16 @@
         "content": "In this post, we will walk through how to set up a simple web application using Node.js and Express. You'll learn about routing, middleware, and connecting to a database.",
         "author": "Yoonhee Kim",
         "published":true,
-        "category": "Programming"
+        "category": "Programming",
+        "publishedDate": "2025-03-01"
     },
     {
         "id": 2,
         "title": "Football skills",
         "content": "In this post I will show my favourite football skills",
         "author":"Ulash Yshyk",
-        "published": false,
-        "category": "Hobby"
+        "published": true,
+        "category": "Hobby",
+        "publishedDate": "2025-01-15"
     }
 ]
