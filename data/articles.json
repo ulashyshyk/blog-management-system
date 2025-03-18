@@ -1,7 +1,7 @@
 [
     {
         "id": 1,
-        "title": "How to Build a Simple Web App with Node.js",
+        "title": "Coding",
         "content": "In this post, we will walk through how to set up a simple web application using Node.js and Express. You'll learn about routing, middleware, and connecting to a database.",
         "author": "Yoonhee Kim",
         "published":true,

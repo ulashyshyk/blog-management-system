@@ -54,14 +54,15 @@ app.get('/articles',(req,res) => {
 
 
       if(filteredArticles.length > 0){
-        res.json(filteredArticles)
+        res.render('articles.ejs',{articles:filteredArticles})
       }else{
-      res.status(404).json({message:"Articles not found"})
+        res.render('articles.ejs',{message : "No data"})
       }
     }).catch((err) => {
       console.log(err)
       res.status(500).json({message : err})
     })
+
 });
 
 
