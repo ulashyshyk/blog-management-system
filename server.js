@@ -31,7 +31,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/about', (req, res) => {
-  res.sendFile(path.join(__dirname, 'views', 'about.html'));
+  res.render('about.ejs')
 });
 
 app.get('/articles',(req,res) => {
@@ -79,7 +79,7 @@ app.get('/categories',(req,res) => {
 });
 
 app.get('/articles/add', (req, res) => {
-  res.sendFile(path.join(__dirname, 'views', 'addArticle.html'));
+  res.render('addArticle.ejs')
   })
 
   app.post('/articles/add', upload.single("featureImage"), (req, res) => {
