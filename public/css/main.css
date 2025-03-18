@@ -23,6 +23,10 @@ body{
     color: black;
 }
 
+.categoriesContainer a{
+    text-decoration: none;
+    color: black;
+}
 .articles{
     text-align: center;
 }
@@ -39,4 +43,13 @@ body{
     align-items: center;
     text-align: center;
     height: 80vh;
+}
+
+.categoriesContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 80vh;
+    font-size: large;
 }

@@ -72,7 +72,7 @@ app.get('/categories',(req,res) => {
       return getCategories()
     })
     .then((categories) =>{
-      res.json(categories)
+      res.render('categories.ejs',{ categories: categories})
     }).catch((err) => {
       console.log(err)
       res.status(500).json({message : err})
