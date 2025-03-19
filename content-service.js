@@ -66,7 +66,7 @@ module.exports.addArticle = (articleData) => {
 
 module.exports.getArticlesByCategory = (category) => {
     return new Promise((resolve, reject) => {
-    const filteredArticles= articles.filter(article=> article.category == category);
+    const filteredArticles = articles.filter(article => article.category == category);
     if (filteredArticles.length > 0) resolve(filteredArticles);
     else reject("no results returned");
     });
@@ -83,7 +83,7 @@ module.exports.getArticlesByMinDate = (minDateStr) => {
 
 module.exports.getArticleById = (id) => {
     return new Promise((resolve, reject) => {
-    const foundArticle = articles.find(article=> article.id == id);
+    const foundArticle = articles.find(article => article.id == id);
     if (foundArticle) resolve(foundArticle);
     else reject("no result returned");
     });
