@@ -19,7 +19,8 @@ cloudinary.config({
 const path = require('path');
 app.use(express.json());
 app.use(express.static('public'));
-
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
 const port = 8000;
 const upload = multer();
 
@@ -124,15 +125,14 @@ app.get("/articles/:id",(req,res) => {
     .then((articles) =>{
       const id = parseInt(req.params.id)
 
-      let filteredArticles = articles
+      const article = articles.find(article => article.id === id)
 
-      filteredArticles = filteredArticles.filter(article => article.id === id)
-
-      if(filteredArticles.length > 0){
-          res.json(filteredArticles)
-      }else{
-        res.status(404).json({message:"Article not found"})
+      if(!article || !article.published){
+          return res.status(404).render('404.ejs')
       }
+
+      res.render('article.ejs',{article:article})
+
     }).catch((err) => {
       console.log(err)
       res.status(500).json({message : err})
