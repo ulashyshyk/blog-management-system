@@ -40,8 +40,33 @@
     </div>
   </nav>    
 
+  <div class="formContainer">
+    <h1>Add a New Article</h1>
 
-  ADD ARTICLE PAGE
+    <form action="/articles/add" method="POST" enctype="multipart/form-data">
+      <label for="title">Title:</label>
+      <input type="text" name="title" id="title" required><br><br>
+
+      <label for="author">Author:</label>
+      <input type="text" name="author" id="author" required><br><br>
+
+      <label for="category">Category:</label>
+      <select name="category" id="category" required>
+        <% categories.forEach(category => { %>
+            <option value="<%= category.name %>"><%= category.name %></option>
+        <% }); %>
+      </select><br><br>
+
+      <label for="content">Content:</label>
+      <textarea name="content" id="content" rows="5" required></textarea><br><br>
+
+      <label for="featureImage">Feature Image:</label>
+      <input type="file" name="featureImage" id="featureImage"><br><br>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+  
   <div id="footerSection" class="container">
     <footer class="py-3 my-4">
       <ul class="nav justify-content-center border-bottom pb-3 mb-3">
@@ -55,7 +80,18 @@
     </footer>
   </div>
 
+  <script>
+    $(document).ready(function () {
+        $("#toggleFooterBtn").click(function () {
+            $("#footerSection").toggle();
+        });
+    });
+  </script>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
 </body>
 </html>
+
+
+

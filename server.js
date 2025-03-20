@@ -8,13 +8,17 @@ const multer = require("multer");
 const cloudinary = require('cloudinary').v2;
 const streamifier = require('streamifier')
 const app = express();
+const bodyParser = require('body-parser');
 
 cloudinary.config({
-  cloud_name: 'Blog',
+  cloud_name: 'dplg9mqfq',
   api_key: 275718229495967,
   api_secret:"Nl0nkUNzws6ZzgiuaYd2delDlPQ",
   secure: true
-  })
+});
+
+app.use(bodyParser.json()); 
+app.use(bodyParser.urlencoded({ extended: true }));
 
 const path = require('path');
 app.use(express.json());
@@ -41,16 +45,16 @@ app.get('/articles',(req,res) => {
       return getPublishedArticles()
     })
     .then((articles) =>{
-      const {category, minDate } = req.query
+      const {category, minDate } = req.query   
 
       let filteredArticles = articles
 
       if(category) {
-        filteredArticles = filteredArticles.filter(article => article.category.toLowerCase() === category.toLowerCase())
+        filteredArticles = filteredArticles.filter(article => article.category.toLowerCase() === category.toLowerCase())   //searches articles that match provided category
       }
 
       if(minDate){
-        filteredArticles = filteredArticles.filter(article =>article.publishedDate >= minDate)
+        filteredArticles = filteredArticles.filter(article =>article.publishedDate >= minDate) //searches articles that were added later than provided date
       }
 
 
@@ -63,7 +67,6 @@ app.get('/articles',(req,res) => {
       console.log(err)
       res.status(500).json({message : err})
     })
-
 });
 
 
@@ -81,10 +84,21 @@ app.get('/categories',(req,res) => {
 });
 
 app.get('/articles/add', (req, res) => {
-  res.render('addArticle.ejs')
+  initialize()
+  .then(() => {
+    return getCategories()
+  })
+  .then(categories => {
+      res.render('addArticle.ejs',{categories:categories})
+  })
+  .catch(err => {
+    res.render('addArticle.ejs',{message:err});
+  })
   })
 
+
 app.post('/articles/add', upload.single("featureImage"), (req, res) => {
+  req.body = {...req.body} //convert from null prototype to normal object
   if (req.file) {  //checks if  file exists
     let streamUpload = (req) => {
       return new Promise((resolve, reject) => {
@@ -102,18 +116,26 @@ app.post('/articles/add', upload.single("featureImage"), (req, res) => {
       return result;
     }
 
-    upload(req).then((uploaded) => {
-      processArticle(uploaded.url);     //uploads the image to cloudinary if successful
-    }).catch(err => res.status(500).json({ message: "Image upload failed", error: err }));
-    } else {
+    upload(req)
+      .then((uploaded) => {
+        processArticle(uploaded.url);     //uploads the image to cloudinary if successful
+      }).catch(err => res.status(500).json({ message: "Image upload failed", error: err }));
+     } else {
     processArticle("");   //if no file was uploaded,file is set to an empty string
     }
-    function processArticle(imageUrl) {    
-      req.body.featureImage = imageUrl;  //attachs image url to the article data
-      // Add article to content-service
-    contentService.addArticle((req.body)
-    .then(() => res.redirect('/articles'))  //saves the article,if successful redirects the user ro /articles
-    .catch(err => res.status(500).json({ message: "Article creation failed", error: err })));
+
+    function processArticle(imageUrl) {
+      req.body.featureImage = imageUrl;  // Attach the uploaded image URL (or empty string if no file)
+  
+      // Call addArticle function from  module to save the article
+      addArticle(req.body)
+        .then(() => {
+          console.log(global.articles)
+          res.redirect('/articles');  // Redirect to articles list after saving
+        })
+        .catch((err) => {
+          res.status(500).json({ message: "Article creation failed", error: err });
+        });
     }
 });
 
@@ -125,10 +147,10 @@ app.get("/articles/:id",(req,res) => {
     .then((articles) =>{
       const id = parseInt(req.params.id)
 
-      const article = articles.find(article => article.id === id)
+      const article = articles.find(article => article.id === id) //searches article by id
 
       if(!article || !article.published){
-          return res.status(404).render('404.ejs')
+          return res.status(404).render('404.ejs')       
       }
 
       res.render('article.ejs',{article:article})

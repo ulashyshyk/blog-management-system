@@ -47,3 +47,10 @@ Clone the repository to your local machine using the following command:
 
 ### 5. Acess the Application
 - http://localhost:8000
+
+## Functionalities Added
+- implemented addArticle form
+- modified all routes to use res.render
+- switched to ejs templates
+- linked category name to all blogs related to that category
+- fixed small issues

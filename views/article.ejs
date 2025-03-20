@@ -39,16 +39,18 @@
       </div>
     </div>
     </nav>    
-
-    <h1><%= article.title %></h1>
-    <p>Author: <%= article.author %></p>
-    <p>Category: <%= article.category %></p>
-    <p>Published on: <%= article.publishedDate %></p>
-    <p><%= article.content %></p>
-  
-    <% if (article.featureImage) { %>
-      <img src="<%= article.featureImage %>" alt="Feature Image">
-    <% } %>
+    <div class="articleContainer">
+        <h1><%= article.title %></h1>
+        <p>Author: <%= article.author %></p>
+        <p>Category: <%= article.category %></p>
+        <p>Published on: <%= article.publishedDate %></p>
+        <p><%= article.content %></p>
+    
+        <% if (article.featureImage) { %>
+        <img src="<%= article.featureImage %>" alt="Feature Image">
+        <% } %>
+    </div>
+    
 
     <div id="footerSection" class="container">
         <footer class="py-3 my-4">

@@ -13,16 +13,17 @@ global.categories = [];
 async function initialize(){
     return new Promise(async (resolve,reject) => {
         try {
-
+            //paths to JSON files
             const articlesPath = path.join(process.cwd(), "data", "articles.json");
-            const categoriesPath = path.join(process.cwd(), "data", "categories.json");
+            const categoriesPath = path.join(process.cwd(), "data", "categories.json");    
 
+            //reading articles.json
             const articlesData = await fs.readFile(articlesPath,'utf8')
             global.articles = JSON.parse(articlesData)
 
+            //reading categories.json
             const categoriesData = await fs.readFile(categoriesPath,'utf8')
             global.categories = JSON.parse(categoriesData)
-
             resolve()
         } catch (error) {
             reject("Unable to read file.");
@@ -32,7 +33,7 @@ async function initialize(){
 
 function getPublishedArticles(){
     return new Promise((resolve,reject) => {
-        const publishedArticles = global.articles.filter(article => article.published === true) 
+        const publishedArticles = global.articles.filter(article => article.published === true) //gets published articles
 
         if(publishedArticles.length === 0){
             return reject("No results returned")
@@ -43,7 +44,7 @@ function getPublishedArticles(){
 }
 
 function getCategories(){
-    return new Promise((resolve,reject) => {
+    return new Promise((resolve,reject) => {        
         if(global.categories.length === 0){
             return reject("No results returned")
         }        
@@ -52,32 +53,43 @@ function getCategories(){
     })
 }
 
+async function saveArticles() {
+    try {
+        const articlesPath = path.join(process.cwd(), "data", "articles.json");
+        await fs.writeFile(articlesPath, JSON.stringify(global.articles, null, 2), 'utf8'); //writes articles array as JSON back to the file with nice format
+    } catch (err) {
+        throw new Error("Failed to save articles")
+    }
+}
 module.exports = { initialize, getPublishedArticles, getCategories };
 
 module.exports.addArticle = (articleData) => {
-    return new Promise((resolve, reject) => {
-    articleData.published = articleData.published ? true : false;
-    articleData.id = articles.length + 1; // Set ID to the current length + 1
-    articleData.publishedDate = new Date().toISOString().split('T')[0];  // Sets current date in YYYY-MM-DD format
-    articles.push(articleData);
-    resolve(articleData);
+    return new Promise(async(resolve, reject) => {
+        articleData.published = true; 
+        articleData.id = global.articles.length + 1; // Set ID to the current length + 1
+        articleData.publishedDate = new Date().toISOString().split('T')[0];  // Sets current date in YYYY-MM-DD format
+        global.articles.push(articleData);
+
+        await saveArticles();      //saves article 
+
+        resolve(articleData);
     });
     }
 
 module.exports.getArticlesByCategory = (category) => {
     return new Promise((resolve, reject) => {
-    const filteredArticles = articles.filter(article => article.category == category);
-    if (filteredArticles.length > 0) resolve(filteredArticles);
-    else reject("no results returned");
+        const filteredArticles = articles.filter(article => article.category == category);
+        if (filteredArticles.length > 0) resolve(filteredArticles);
+        else reject("no results returned");
     });
 };
 
 module.exports.getArticlesByMinDate = (minDateStr) => {
     return new Promise((resolve, reject) => {
-    const minDate = new Date(minDateStr);
-    const filteredArticles = articles.filter(article => new Date(article.publishedDate) >= minDate);
-    if (filteredArticles.length > 0) resolve(filteredArticles);
-    else reject("no results returned");
+        const minDate = new Date(minDateStr);
+        const filteredArticles = articles.filter(article => new Date(article.publishedDate) >= minDate);
+        if (filteredArticles.length > 0) resolve(filteredArticles);
+        else reject("no results returned");
     });
 };
 

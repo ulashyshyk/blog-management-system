@@ -1,20 +1,32 @@
 [
-    {
-        "id": 1,
-        "title": "Coding",
-        "content": "In this post, we will walk through how to set up a simple web application using Node.js and Express. You'll learn about routing, middleware, and connecting to a database.",
-        "author": "Yoonhee Kim",
-        "published":true,
-        "category": "Programming",
-        "publishedDate": "2025-03-01"
-    },
-    {
-        "id": 2,
-        "title": "Football skills",
-        "content": "In this post I will show my favourite football skills",
-        "author":"Ulash Yshyk",
-        "published": false,
-        "category": "Hobby",
-        "publishedDate": "2025-01-15"
-    }
+  {
+    "id": 1,
+    "title": "Coding",
+    "content": "In this post, we will walk through how to set up a simple web application using Node.js and Express. You'll learn about routing, middleware, and connecting to a database.",
+    "author": "Yoonhee Kim",
+    "published": true,
+    "category": "Programming",
+    "publishedDate": "2025-03-01",
+    "featureImage": "https://wallpaperaccess.com/full/314785.jpg"
+  },
+  {
+    "id": 2,
+    "title": "Football skills",
+    "content": "In this post I will show my favourite football skills",
+    "author": "Ulash Yshyk",
+    "published": true,
+    "category": "Hobby",
+    "publishedDate": "2025-01-15",
+    "featureImage": "https://tse4.mm.bing.net/th?id=OIP.t5zmjzFpb58M1WsREkNtUwEsCo&pid=Api&P=0&h=180"
+  },
+  {
+    "title": "test",
+    "author": "tester",
+    "category": "Programming",
+    "content": "test test test",
+    "featureImage": "http://res.cloudinary.com/dplg9mqfq/image/upload/v1742506632/moa583coqdsjunalvbpz.png",
+    "published": true,
+    "id": 3,
+    "publishedDate": "2025-03-20"
+  }
 ]
