@@ -9,6 +9,7 @@ const cloudinary = require('cloudinary').v2;
 const streamifier = require('streamifier')
 const app = express();
 const bodyParser = require('body-parser');
+const path = require('path');
 
 cloudinary.config({
   cloud_name: 'dplg9mqfq',
@@ -20,9 +21,8 @@ cloudinary.config({
 app.use(bodyParser.json()); 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const path = require('path');
 app.use(express.json());
-app.use(express.static(__dirname + "/public/"));
+app.use(express.static(path.join(__dirname, "public")));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 const port = 8000;
