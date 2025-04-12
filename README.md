@@ -8,7 +8,7 @@
 - **Professor**: Harry Scanlan
 
 ## Vercel Link
-- https://web322-assignments-tau.vercel.app/
+- https://web322-assignments-liart.vercel.app/
 
 ## GitHub Repository
 
@@ -21,7 +21,8 @@
 - **File System (fs)**: A built-in Node.js module to read data from files.
 - **Promises**: Used to handle asynchronous operations and simplify error handling.
 - **JSON**: The format used for storing data in `articles.json` and `categories.json`.
-
+- **EJS**: Templating engine for views
+- **PostgreSQL**: Database system hosted on Neon.tech
 ## Prerequisites
 
 Before running the program, ensure you have **Node.js** installed. You can download it from the official website:
@@ -48,9 +49,13 @@ Clone the repository to your local machine using the following command:
 ### 5. Acess the Application
 - http://localhost:8000
 
-## Functionalities Added
-- implemented addArticle form
-- modified all routes to use res.render
-- switched to ejs templates
-- linked category name to all blogs related to that category
-- fixed small issues
+## Neon.tech Database Integration
+- created new project in Neon.tech
+- configured database with required tables(Articles,Categories)
+- replaced use of JSON files with persistent,scalable database
+## Steps to configure
+- Log in to your Neon.tech dashboard
+
+- Navigate to your project's "Connection Details"
+
+- Copy the connection string parameters
