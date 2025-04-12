@@ -17,7 +17,7 @@ const pool = new Pool({
     rejectUnauthorized: false
   }
 });
-
+module.exports.pool = pool;
 module.exports.getArticles = () => {
   return pool.query('SELECT * FROM "Articles"')
     .then(res => res.rows)

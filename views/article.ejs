@@ -42,13 +42,20 @@
     <div class="articleContainer">
         <h1><%= article.title %></h1>
         <p>Author: <%= article.author %></p>
-        <p>Category: <%= article.category %></p>
-        <p>Published on: <%= article.publishedDate %></p>
+        <p>Category: <%= article.category_name %></p>
+        <p>Published On: <%= new Date(article.published_date).toISOString().split('T')[0] %></p>
         <p><%= article.content %></p>
     
         <% if (article.featureImage) { %>
         <img src="<%= article.featureImage %>" alt="Feature Image">
         <% } %>
+        <div class="mt-4">
+          <a href="/articles/<%= article.id %>/edit" class="btn btn-primary">Edit</a>
+          <form action="/articles/<%= article.id %>?_method=DELETE" method="POST" style="display: inline; box-shadow:none;">
+              <input type="hidden" name="_method" value="DELETE">
+              <button type="submit" style="box-shadow:none;" class="btn btn-danger">Delete</button>
+          </form>
+        </div>
     </div>
     
 

@@ -10,7 +10,9 @@ const streamifier = require('streamifier')
 const app = express();
 const bodyParser = require('body-parser');
 const path = require('path');
-
+const methodOverride = require('method-override')
+const db = require('./content-service.js')
+const pool = db.pool;
 cloudinary.config({
   cloud_name: 'dplg9mqfq',
   api_key: 275718229495967,
@@ -20,7 +22,7 @@ cloudinary.config({
 
 app.use(bodyParser.json()); 
 app.use(bodyParser.urlencoded({ extended: true }));
-
+app.use(methodOverride('_method'))
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 app.set('view engine', 'ejs');
@@ -151,7 +153,67 @@ app.get("/articles/:id",(req,res) => {
       res.status(500).json({ message: err });
     });
 })
+app.put('/articles/:id', upload.single("featureImage"), async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { title, author, content, category, existingImage } = req.body;
 
+    if (req.file) {
+      // If new image uploaded
+      const imageUrl = (await uploadToCloudinary(req)).url;
+      await pool.query(`
+        UPDATE "Articles"
+        SET 
+          title = $1,
+          content = $2,
+          author = $3,
+          category_name = $4,
+          "featureImage" = $5
+        WHERE id = $6
+      `, [title, content, author, category, imageUrl, id]);
+    } else {
+      // If no new image uploaded
+      await pool.query(`
+        UPDATE "Articles"
+        SET 
+          title = $1,
+          content = $2,
+          author = $3,
+          category_name = $4
+        WHERE id = $5
+      `, [title, content, author, category, id]);
+    }
+
+    res.redirect('/articles');
+  } catch (err) {
+    console.error("Update failed:", err);
+    res.status(500).send("Article update failed");
+  }
+});
+app.get('/articles/:id/edit', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const result = await getArticleById(id);
+    console.log(result[0])
+    if (result.length === 0) {
+      return res.status(404).send('Article not found');
+    }
+
+    const article = result[0];
+    res.render('edit', { article });
+  } catch (err) {
+    res.status(500).send("Error fetching article details");
+  }
+});
+app.delete('/articles/:id', async (req, res) => {
+  try {
+    const {id} = req.params;
+    await pool.query('DELETE FROM "Articles" WHERE id = $1', [id]);
+    res.redirect('/articles');
+  } catch (err) {
+    res.status(500).send("Failed to delete article");
+  }
+});
 app.listen(port, () => {
   console.log(`Express http server listening on port ${port}`);
   console.log(`http://localhost:${port}`)
