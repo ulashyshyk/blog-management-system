@@ -21,10 +21,9 @@ A full-featured blog management platform developed as part of the WEB322 course 
 
 ## 🛠️ Tech Stack
 
-- **Backend**: Node.js, Express.js
+- **Backend**: Node.js, Express.js, PostgreSQL
 - **Templating**: EJS (Embedded JavaScript)
 - **Frontend**: HTML, CSS, Bootstrap 5
-- **Storage**: JSON files (for posts, categories, images)
 - **Deployment**: Vercel
 
 ---
