@@ -2,7 +2,7 @@
 
 A full-featured blog management platform developed as part of the WEB322 course at Seneca Polytechnic. This Node.js and Express.js-based application supports dynamic content creation, post management, and category organization through a clean, server-rendered interface using EJS templating.
 
-> ✅ Deployed via Vercel  
+> ✅[Live Demo](https://blog-management-system-xi.vercel.app/)  
 > 📚 Built for learning full-stack development with Node.js and Express
 
 ---
