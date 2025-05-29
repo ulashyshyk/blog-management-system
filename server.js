@@ -1,8 +1,3 @@
-// Name: Ulash Yshyk
-// Student Number: 153349220
-// Email: uyshyk@myseneca.ca
-// Create Date: 2025/01/29
-// Last Modified Date: 2025/02/05
 const express = require('express');
 const multer = require("multer");
 const cloudinary = require('cloudinary').v2;
@@ -13,10 +8,11 @@ const path = require('path');
 const methodOverride = require('method-override')
 const db = require('./content-service.js')
 const pool = db.pool;
+
 cloudinary.config({
-  cloud_name: 'dplg9mqfq',
-  api_key: 275718229495967,
-  api_secret:"Nl0nkUNzws6ZzgiuaYd2delDlPQ",
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
   secure: true
 });
 

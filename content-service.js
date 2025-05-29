@@ -1,20 +1,14 @@
-// AS5 Part 2: Refactored content-service to use Neon.tech
-// Name: Ulash Yshyk
-// Student Number: 153349220
-// Email: uyshyk@myseneca.ca
-// Create Date: 2025/02/04
-// Last Modified Date: 2025/02/05
-
+require('dotenv').config();
 const { Pool } = require("pg");
-
+const env = require
 const pool = new Pool({
-  user: 'blog-database_owner',
-  host: 'ep-wandering-voice-a51bndea-pooler.us-east-2.aws.neon.tech',
-  database: 'blog-database',
-  password: 'npg_JjviBhP3c7tA',
-  port: 5432,
-  ssl: {
-    rejectUnauthorized: false
+  user: process.env.PG_USER,
+  host: process.env.PG_HOST,
+  database: process.env.PG_DATABASE,
+  password: process.env.PG_PASSWORD,
+  port: process.env.PG_PORT,
+  ssl:{
+    rejectUnauthorized:false
   }
 });
 module.exports.pool = pool;

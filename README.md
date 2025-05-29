@@ -1,61 +1,80 @@
-# Web322 Assignments
+# 📝 Blog Management System
 
-## Student Information
+A full-featured blog management platform developed as part of the WEB322 course at Seneca Polytechnic. This Node.js and Express.js-based application supports dynamic content creation, post management, and category organization through a clean, server-rendered interface using EJS templating.
 
-- **Name**: Ulash Yshyk
-- **Student Number**: 153349220
-- **Seneca Email**: [uyshyk@myseneca.ca](mailto:uyshyk@myseneca.ca)
-- **Professor**: Harry Scanlan
+> ✅ Deployed via Vercel  
+> 📚 Built for learning full-stack development with Node.js and Express
 
-## Vercel Link
-- https://web322-assignments-liart.vercel.app/
+---
 
-## GitHub Repository
+## 🚀 Features
 
-- [Repository Link](https://github.com/Ulash1907/web322_assignments.git)
+- ✍️ Create, read, update, and delete blog posts
+- 🗂️ Organize posts by categories
+- 🔍 Filter and search posts
+- 🖼️ Upload and manage images for articles
+- 🧰 Admin panel to manage content
+- 📄 Dynamic rendering with EJS templating engine
+- 📁 Data handling via local JSON files (mock DB)
 
-## Technologies & Stack
+---
 
-- **Node.js**: A JavaScript runtime for building the server.
-- **Express.js**: A web framework used for routing and HTTP handling.
-- **File System (fs)**: A built-in Node.js module to read data from files.
-- **Promises**: Used to handle asynchronous operations and simplify error handling.
-- **JSON**: The format used for storing data in `articles.json` and `categories.json`.
-- **EJS**: Templating engine for views
-- **PostgreSQL**: Database system hosted on Neon.tech
-## Prerequisites
+## 🛠️ Tech Stack
 
-Before running the program, ensure you have **Node.js** installed. You can download it from the official website:
+- **Backend**: Node.js, Express.js
+- **Templating**: EJS (Embedded JavaScript)
+- **Frontend**: HTML, CSS, Bootstrap 5
+- **Storage**: JSON files (for posts, categories, images)
+- **Deployment**: Vercel
 
-- [Download Node.js](https://nodejs.org/)
+---
 
-## How to Use
+## 📁 Project Structure
+
+```
+WEB322_Assignments/
+├── public/               # Static files (CSS, images, client-side JS)
+├── views/                # EJS templates for rendering pages
+├── data/                 # JSON files acting as a mock database
+├── content-service.js    # Logic for handling blog content
+├── server.js             # Main server file (Express app entry)
+├── package.json
+└── vercel.json           # Deployment config
+```
+
+---
+
+## 💻 How to Run Locally
 
 ### 1. Clone the Repository
+```bash
+git clone https://github.com/ulashyshyk/web322-blog-platform.git
+cd web322-blog-platform
+```
 
-Clone the repository to your local machine using the following command:
+### 2. Install Dependencies
+```bash
+npm install
+```
 
-- git clone https://github.com/Ulash1907/web322_assignments
+### 3. Start the Server
+```bash
+npm start
+```
 
-### 2. Navigate to the Project Directory
-- cd WEB322_ASSIGNMENTS
+The app will run on `http://localhost:8080` by default.
 
-### 3. Install Dependencies
-- npm install
+---
 
-### 4. Start the Server
-- node server.js
+## 🙋‍♂️ About Me
 
-### 5. Acess the Application
-- http://localhost:8000
+Hi, I'm [Ulash Yshyk](https://www.linkedin.com/in/ulashyshyk/), a Computer Programming & Analysis student at Seneca Polytechnic. I enjoy building scalable web apps and continuously growing my backend and deployment skills. Currently seeking a **Fall 2025 Co-op** opportunity in software/web development or QA.
 
-## Neon.tech Database Integration
-- created new project in Neon.tech
-- configured database with required tables(Articles,Categories)
-- replaced use of JSON files with persistent,scalable database
-## Steps to configure
-- Log in to your Neon.tech dashboard
+---
 
-- Navigate to your project's "Connection Details"
+## 📫 Contact
 
-- Copy the connection string parameters
+- ✉️ Email: isikulas1907@gmail.com  
+- 💼 LinkedIn: [linkedin.com/in/ulashyshyk](https://www.linkedin.com/in/ulashyshyk)
+
+---
