@@ -8,6 +8,7 @@ const path = require('path');
 const methodOverride = require('method-override')
 const db = require('./content-service.js')
 const pool = db.pool;
+require('dotenv').config();
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
